@@ -1,65 +1,120 @@
-import Image from "next/image";
+import { prisma } from "@/lib/prisma";
+import Link from "next/link";
+import BannerSlider from "./components/BannerSlider";
+import TestimonialsSlider from "./components/TestimonialsSlider";
 
-export default function Home() {
+export default async function Home() {
+  const products = await prisma.product.findMany({
+    take: 6,
+    orderBy: { createdAt: "desc" },
+  });
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main>
+      <BannerSlider />
+
+
+      {/* 2. 75+ Years About Section */}
+      <section className="about-75-section">
+        <div className="container about-grid">
+          <div className="about-image-col">
+            <img src="/images/sec-about-image-3.jpg" alt="FMI Limited Factory" className="about-main-img" />
+            <img src="/images/75plus-Year-new_200x200-1.png" alt="75+ Years" className="about-badge-img" />
+          </div>
+          <div className="about-text-col">
+            <h2 className="red-heading">Pioneer Since 1950</h2>
+            <h3>FMI Limited is the pioneer and the largest manufacturer of measuring tapes, spirit levels and measuring wheels in the Indian sub-continent.</h3>
+            <p>Our products have been marketed under the FREEMANS brand since 1950 and are manufactured at our state-of-the-art facility in Ludhiana, Punjab. We are an ISO 9001:2015 certified company and our CE MID certified products are exported to over 60 countries.</p>
+            <Link href="/about" className="btn-read-more">READ MORE</Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* 3. Stats / Features Section */}
+      <section className="about-features-section">
+        <div className="container">
+          <div className="about-features">
+            <div className="row">
+              <div className="abt-feature-item">
+                <div className="abt-feature-icon">
+                  <img src="/images/75plus-Year-new_200x200-1.png" alt="75+ Years" width="120" height="120" />
+                </div>
+                <div className="abt-feature-title"><i>75</i>+</div>
+                <div className="abt-feature-desc">Years of Manufacturing Excellence</div>
+              </div>
+              <div className="abt-feature-item">
+                <div className="abt-feature-icon">
+                  <img src="/images/icon-02-3.png" alt="150,000+" width="120" height="120" />
+                </div>
+                <div className="abt-feature-title"><i>150,000</i>+</div>
+                <div className="abt-feature-desc">Measuring Tapes<br />Manufactured per Day</div>
+              </div>
+              <div className="abt-feature-item">
+                <div className="abt-feature-icon">
+                  <img src="/images/icon-03-1.png" alt="2000+" width="120" height="120" />
+                </div>
+                <div className="abt-feature-title"><i>2000</i>+</div>
+                <div className="abt-feature-desc">Product Portfolio</div>
+              </div>
+              <div className="abt-feature-item">
+                <div className="abt-feature-icon">
+                  <img src="/images/icon-01-3.png" alt="60+" width="120" height="120" />
+                </div>
+                <div className="abt-feature-title"><i>60</i>+</div>
+                <div className="abt-feature-desc">Countries Worldwide</div>
+              </div>
+              <div className="abt-feature-item">
+                <div className="abt-feature-icon">
+                  <img src="/images/icon-04-3.png" alt="1600" width="120" height="120" />
+                </div>
+                <div className="abt-feature-title"><i>1,600</i></div>
+                <div className="abt-feature-desc">Dedicated Employees</div>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* 4. Tools Grid Section */}
+      <section className="tools-grid-section">
+        <div className="container">
+          <h2 className="section-title">Choose Your Tools</h2>
+          <div className="tools-grid">
+            <Link href="/products/measuring-tapes" className="tool-box">
+              <img src="/images/tools-1-3.jpg" alt="Measuring Tapes" />
+              <div className="choose-item-overlay"><h5>Measuring Tapes</h5></div>
+            </Link>
+            <Link href="/products/measuring-wheels" className="tool-box">
+              <img src="/images/Measuring-Wheel-Image-370x310px-2.jpg" alt="Measuring Wheels" />
+              <div className="choose-item-overlay"><h5>Measuring Wheels</h5></div>
+            </Link>
+            <Link href="/products/spirit-levels" className="tool-box">
+              <img src="/images/tools-2-3.jpg" alt="Spirit Levels" />
+              <div className="choose-item-overlay"><h5>Spirit Levels</h5></div>
+            </Link>
+            <Link href="/products/test-and-measure-tools" className="tool-box">
+              <img src="/images/tools-3-3.jpg" alt="Test & Measure Tools" />
+              <div className="choose-item-overlay"><h5>Test And Measure Tools</h5></div>
+            </Link>
+            <Link href="/products/precision-tools" className="tool-box">
+              <img src="/images/PRECISION-TOOLS-1.jpg" alt="Precision Tools" />
+              <div className="choose-item-overlay"><h5>Precision Tools</h5></div>
+            </Link>
+            <Link href="/products/power-tool-accessories" className="tool-box">
+              <img src="/images/POWER-TOOL-1.jpg" alt="Power Tool Accessories" />
+              <div className="choose-item-overlay"><h5>Power Tool Accessories</h5></div>
+            </Link>
+            <Link href="/products/hand-tools" className="tool-box">
+              <img src="/images/HAND-TOOLS-2.jpg" alt="Hand Tools" />
+              <div className="choose-item-overlay"><h5>Hand Tools</h5></div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Customer Testimonials */}
+      <TestimonialsSlider />
+
+    </main>
   );
 }

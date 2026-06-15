@@ -1,0 +1,335 @@
+/* Inner Header */
+.inner-header {
+  padding: 49px 0 36px;
+  color: #fff;
+  background-color: #b91519;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.inner-header-wrap {
+  padding: 15px 0 20px 75px;
+  position: relative;
+  text-align: left;
+}
+.inner-header-wrap::before {
+  content: '';
+  display: block;
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 12px);
+  pointer-events: none;
+  background: url(/images/inner-head-scale.png) no-repeat center left;
+  background-size: contain;
+}
+.inner-header-wrap h1 {
+  color: #fff;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 35px;
+  line-height: 1em;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 0;
+}
+.breadcrumb {
+  color: #fff;
+  font-size: 14px;
+}
+.breadcrumb a {
+  color: #fff;
+  text-decoration: none;
+}
+.breadcrumb .item-current {
+  color: #e11b22;
+}
+
+/* Company About */
+.company-about {
+  padding: 60px 0;
+}
+.sec-title {
+  font-size: 35px;
+  color: #000;
+  font-weight: 800;
+  text-align: center;
+  position: relative;
+  margin: 0 0 50px;
+  padding: 0 0 15px;
+  text-transform: uppercase;
+}
+.sec-title::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 3px;
+  background: #e11b22;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+.comp-about-content p {
+  text-align: center;
+  font-size: 15px;
+  line-height: 28px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Our Story Slider */
+.company-story {
+  padding: 50px 0;
+  background: url(/images/story-bg.jpg) no-repeat center #e11b22;
+  background-size: cover;
+  color: #fff;
+}
+.story-year-slider {
+  margin-bottom: 30px;
+  padding: 0 90px;
+}
+.story-year-item span {
+  display: block;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 50%;
+  text-align: center;
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+.story-year-item span:hover {
+  background: rgba(255,255,255,0.95);
+}
+.story-year-slider .swiper-slide-thumb-active .story-year-item span {
+  background: #fff;
+  color: #e11b22;
+}
+.story-cont-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  min-height: 300px;
+}
+.story-content-slider {
+  min-height: 300px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 30px;
+}
+.story-cont-left {
+  flex: 0 0 50%;
+  padding-right: 30px;
+}
+.story-cont-right {
+  flex: 0 0 50%;
+  padding-left: 30px;
+}
+.story-cont-image img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.story-cont-year {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.story-cont-title {
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 1px;
+  margin: 15px 0 10px;
+}
+.story-cont-desc {
+  padding: 10px 0 0;
+  font-weight: 300;
+}
+.story-cont-desc p {
+  font-weight: 300;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .story-cont-left, .story-cont-right {
+    flex: 0 0 100%;
+    padding: 0;
+  }
+  .story-cont-right {
+    margin-top: 30px;
+  }
+}
+
+/* Competitive Advantages */
+.advantages-sec {
+  padding: 60px 0;
+}
+.adv-items-wrap {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+.adv-item {
+  flex: 1 1 0;
+  position: relative;
+  text-align: center;
+  padding: 30px 15px;
+  background: #fff;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+.adv-item:hover {
+  transform: translateY(-10px);
+}
+.adv-item-icon {
+  margin-bottom: 20px;
+}
+.adv-item-icon img {
+  max-width: 60px;
+}
+.adv-item-content h4 {
+  font-size: 17px;
+  margin-bottom: 15px;
+  color: #333;
+  white-space: nowrap;
+}
+.adv-item-content ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+.adv-item-content ul li {
+  position: relative;
+  padding-left: 15px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #666;
+  margin-bottom: 10px;
+}
+.adv-item-content ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 6px;
+  height: 6px;
+  background: #e11b22;
+  border-radius: 50%;
+}
+
+@media (max-width: 991px) {
+  .adv-item { flex: 0 0 calc(50% - 15px); }
+}
+@media (max-width: 575px) {
+  .adv-item { flex: 0 0 100%; }
+}
+
+/* Globe Section */
+.globe-section {
+  padding: 60px 0;
+  background: #f1f1f1;
+}
+.globe-wrapper {
+  position: relative;
+  height: 400px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+#chartdiv {
+  width: 100%;
+  height: 100%;
+}
+.info-txt {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.8);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+/* Commitment to Quality */
+.commit-sec {
+  padding: 100px 0 0;
+}
+.commit-top-content {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.ctc-left, .ctc-right {
+  width: calc(50% - 15px);
+  padding: 0 15px;
+}
+.ctc-left p {
+  font-size: 15px;
+  line-height: 28px;
+  color: #555;
+}
+.ctc-slider {
+  height: 350px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.ctc-slider .swiper-slide {
+  height: 100% !important;
+}
+.ctc-slide-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.commit-bottom-content {
+  margin: 30px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.cbc-item {
+  text-align: center;
+  width: calc(20% - 15px);
+}
+.cbc-item span {
+  display: flex;
+  padding: 20px 15px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.cbc-item img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .ctc-left, .ctc-right {
+    width: 100%;
+    padding: 0;
+  }
+  .cbc-item {
+    width: calc(33.33% - 15px);
+  }
+}
