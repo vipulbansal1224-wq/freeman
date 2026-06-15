@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { addProduct, deleteProduct, editProduct } from "./actions";
+import ImageUploader from "../../components/ImageUploader";
 
 export default function ProductClient({ allProducts, categories }: { allProducts: any[], categories: any[] }) {
   const [editItem, setEditItem] = useState<any>(null);
@@ -34,7 +35,7 @@ export default function ProductClient({ allProducts, categories }: { allProducts
         <h3>{editItem ? "Edit Product" : "Add New Product"}</h3>
         <form 
           action={editItem ? editProduct : addProduct} 
-          style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '400px' }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '500px' }}
         >
           {editItem && <input type="hidden" name="originalIndex" value={editItem.index} />}
           {editItem && <input type="hidden" name="originalCat" value={editItem.categorySlug} />}
@@ -59,13 +60,13 @@ export default function ProductClient({ allProducts, categories }: { allProducts
             value={formData.title}
             onChange={(e) => setFormData({...formData, title: e.target.value})}
           />
-          <input 
-            name="imgUrl" 
-            placeholder="Image URL (e.g., https://...)" 
-            required 
-            style={{ padding: '0.5rem' }} 
-            value={formData.imgUrl}
-            onChange={(e) => setFormData({...formData, imgUrl: e.target.value})}
+          
+          {/* We use ImageUploader instead of raw input */}
+          <input type="hidden" name="imgUrl" value={formData.imgUrl} />
+          <ImageUploader 
+            label="Product Image" 
+            value={formData.imgUrl} 
+            onChange={(url) => setFormData({...formData, imgUrl: url})} 
           />
           
           <div style={{ display: 'flex', gap: '1rem' }}>

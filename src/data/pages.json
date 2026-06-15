@@ -1,0 +1,8 @@
+[
+  {
+    "slug": "custom-sample",
+    "title": "A Sample Custom Page",
+    "bannerImage": "/images/sec-about-image-3.jpg",
+    "content": "<h2>Welcome to the Custom Page</h2><p>This is a page created from the Admin Panel. You can add images, HTML, and text here!</p>"
+  }
+]

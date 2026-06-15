@@ -19,6 +19,9 @@ export default function AdminLayout({
               <Link href="/admin/menu">Website Menu</Link>
             </li>
             <li>
+              <Link href="/admin/pages">Custom Pages</Link>
+            </li>
+            <li>
               <Link href="/admin/products">Products</Link>
             </li>
             <li>
@@ -26,6 +29,9 @@ export default function AdminLayout({
             </li>
             <li>
               <Link href="/admin/faq">FAQ</Link>
+            </li>
+            <li>
+              <Link href="/admin/settings">Global Settings</Link>
             </li>
             <li style={{ marginTop: 'auto' }}>
               <Link href="/" className="back-to-site">View Live Site</Link>

@@ -16,10 +16,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const menuPath = path.join(process.cwd(), "src/data/menu.json");
+  const settingsPath = path.join(process.cwd(), "src/data/settings.json");
   let menuData: any = [];
+  let settings: any = {};
   try {
     const file = await fs.readFile(menuPath, "utf-8");
     menuData = JSON.parse(file);
+    const sFile = await fs.readFile(settingsPath, "utf-8");
+    settings = JSON.parse(sFile);
   } catch(e) {}
 
   return (
@@ -31,8 +35,8 @@ export default async function RootLayout({
             <div className="container top-bar-content">
               <div className="top-left">World class Measuring Tools</div>
               <div className="top-right">
-                <span>Sales Query: 124-418-5950</span>
-                <span>sales@freemansgroup.com</span>
+                <span>Sales Query: {settings.headerPhone || "124-418-5950"}</span>
+                <span>{settings.headerEmail || "sales@freemansgroup.com"}</span>
               </div>
             </div>
           </div>
@@ -41,7 +45,7 @@ export default async function RootLayout({
           <div className="middle-bar container">
             <div className="logo-container">
               <Link href="/">
-                <img src="/images/FREEMANS-LOGO-28th-april-1.jpg" alt="FMI Limited" className="header-logo" />
+                <img src={settings.logoUrl || "/images/FREEMANS-LOGO-28th-april-1.jpg"} alt="FMI Limited" className="header-logo" />
               </Link>
             </div>
             

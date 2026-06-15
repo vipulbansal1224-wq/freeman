@@ -1,6 +1,15 @@
 import Link from "next/link";
+import fs from "fs/promises";
+import path from "path";
 
-export default function Footer() {
+export default async function Footer() {
+  const settingsPath = path.join(process.cwd(), "src/data/settings.json");
+  let settings: any = {};
+  try {
+    const sFile = await fs.readFile(settingsPath, "utf-8");
+    settings = JSON.parse(sFile);
+  } catch(e) {}
+
   return (
     <>
       <div className="footer-tape-animation"></div>
@@ -45,23 +54,19 @@ export default function Footer() {
                 <span className="fw-icon">
                   <img height="19px" width="15px" src="/images/address-icon-footer.png" alt="Address" />
                 </span>
-                <p>
-                  FMI Limited<br />
-                  <span>8-005, 8-006 and 8-007, 8th Floor</span>, Emaar Capital Tower No. 1,<br />
-                  MG Road Gurugram – 122002 (Sector 26) Haryana. India
-                </p>
+                <p dangerouslySetInnerHTML={{ __html: settings.footerAddress || "FMI Limited<br /><span>8-005, 8-006 and 8-007, 8th Floor</span>, Emaar Capital Tower No. 1,<br />MG Road Gurugram – 122002 (Sector 26) Haryana. India" }} />
               </div>
               <div className="fw-address-item">
                 <span className="fw-icon">
                   <img height="14px" width="16px" src="/images/email-icon-footer.png" alt="Email" />
                 </span>
-                <p><a href="mailto:sales@freemansgroup.com">sales@freemansgroup.com</a></p>
+                <p><a href={`mailto:${settings.footerEmail || "sales@freemansgroup.com"}`}>{settings.footerEmail || "sales@freemansgroup.com"}</a></p>
               </div>
               <div className="fw-address-item">
                 <span className="fw-icon">
                   <img height="17px" width="17px" src="/images/phone-icon-footer.png" alt="Phone" />
                 </span>
-                <p>+91-124-418-5950</p>
+                <p>{settings.footerPhone || "+91-124-418-5950"}</p>
               </div>
             </div>
           </div>
@@ -70,16 +75,16 @@ export default function Footer() {
 
       <div className="footer-social">
         <div className="container">
-          <a href="https://www.facebook.com/Freemans_FMI-104249888012770" target="_blank" rel="noreferrer">
+          <a href={settings.socialFacebook || "#"} target="_blank" rel="noreferrer">
             <img height="20px" width="12px" src="/images/fb-icon.png" alt="Facebook" />
           </a>
-          <a href="https://www.linkedin.com/company/freemans-fmi/" target="_blank" rel="noreferrer">
+          <a href={settings.socialLinkedin || "#"} target="_blank" rel="noreferrer">
             <img height="20px" width="20px" src="/images/linkedin.png" alt="LinkedIn" />
           </a>
-          <a href="https://www.instagram.com/freemans_fmi/" target="_blank" rel="noreferrer">
+          <a href={settings.socialInstagram || "#"} target="_blank" rel="noreferrer">
             <img height="20px" width="20px" src="/images/instagram.png" alt="Instagram" />
           </a>
-          <a href="https://www.youtube.com/channel/UCB_FI2-xuEX8zO8skT-X-Ag" target="_blank" rel="noreferrer">
+          <a href={settings.socialYoutube || "#"} target="_blank" rel="noreferrer">
             <img height="15px" width="20px" src="/images/yt-icon.png" alt="YouTube" />
           </a>
         </div>
@@ -89,10 +94,10 @@ export default function Footer() {
         <div className="container">
           <div className="row">
             <div className="col-sm-4 copy-text">
-              &copy; {new Date().getFullYear()} <a href="/">FMI Limited</a>. All Rights Reserved.
+              &copy; {new Date().getFullYear()} <a href="/">{settings.copyrightText || "FMI Limited"}</a>. All Rights Reserved.
             </div>
             <div className="col-sm-4 footer-logo">
-              <img height="30px" width="163px" src="/images/logo-footer.png" alt="FMI Logo" />
+              <img height="30px" src={settings.footerLogoUrl || "/images/logo-footer.png"} alt="FMI Logo" />
             </div>
             <div className="col-sm-4 footer-right">
             </div>
