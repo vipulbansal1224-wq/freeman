@@ -1,13 +1,8 @@
-import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import BannerSlider from "./components/BannerSlider";
 import TestimonialsSlider from "./components/TestimonialsSlider";
 
 export default async function Home() {
-  const products = await prisma.product.findMany({
-    take: 6,
-    orderBy: { createdAt: "desc" },
-  });
 
   return (
     <main>
