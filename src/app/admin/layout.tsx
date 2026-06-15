@@ -16,13 +16,13 @@ export default function AdminLayout({
               <Link href="/admin">Dashboard</Link>
             </li>
             <li>
-              <Link href="/admin/pages">Pages (Menu Content)</Link>
-            </li>
-            <li>
               <Link href="/admin/products">Products</Link>
             </li>
             <li>
-              <Link href="/admin/settings">Site Settings</Link>
+              <Link href="/admin/news">News</Link>
+            </li>
+            <li>
+              <Link href="/admin/faq">FAQ</Link>
             </li>
             <li>
               <Link href="/">← Back to Site</Link>

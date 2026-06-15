@@ -1,31 +1,55 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import fs from "fs/promises";
+import path from "path";
 import { revalidatePath } from "next/cache";
 
-export async function addProduct(formData: FormData) {
-  const title = formData.get("title") as string;
-  const description = formData.get("description") as string;
-  const category = formData.get("category") as string;
-  const imageUrl = formData.get("imageUrl") as string;
+const dataFilePath = path.join(process.cwd(), "src/app/products/all-categories-data.json");
 
-  await prisma.product.create({
-    data: {
-      title,
-      description,
-      category,
-      imageUrl,
-    },
-  });
-
-  revalidatePath("/admin/products");
-  revalidatePath("/");
+async function getData() {
+  try {
+    const fileContent = await fs.readFile(dataFilePath, "utf-8");
+    return JSON.parse(fileContent);
+  } catch (err) {
+    return {};
+  }
 }
 
-export async function deleteProduct(id: number) {
-  await prisma.product.delete({
-    where: { id },
-  });
+export async function addProduct(formData: FormData) {
+  const categorySlug = formData.get("categorySlug") as string;
+  const title = formData.get("title") as string;
+  const imgUrl = formData.get("imgUrl") as string;
+
+  if (!categorySlug || !title || !imgUrl) return;
+
+  const data = await getData();
+  
+  if (!data[categorySlug]) {
+    // Creating a new category if it doesn't exist
+    data[categorySlug] = {
+      title: categorySlug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+      bannerImage: "",
+      introText: "",
+      sidebarLinks: [],
+      products: []
+    };
+  }
+
+  // Add product
+  data[categorySlug].products.unshift({ title, img: imgUrl });
+
+  await fs.writeFile(dataFilePath, JSON.stringify(data, null, 2));
   revalidatePath("/admin/products");
-  revalidatePath("/");
+  revalidatePath(`/products/${categorySlug}`);
+}
+
+export async function deleteProduct(categorySlug: string, productIndex: number) {
+  const data = await getData();
+  
+  if (data[categorySlug] && data[categorySlug].products) {
+    data[categorySlug].products.splice(productIndex, 1);
+    await fs.writeFile(dataFilePath, JSON.stringify(data, null, 2));
+    revalidatePath("/admin/products");
+    revalidatePath(`/products/${categorySlug}`);
+  }
 }
