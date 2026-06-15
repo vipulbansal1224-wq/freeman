@@ -1,0 +1,113 @@
+.news-and-press-page {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.company-about {
+  padding: 50px 0;
+}
+
+.news_wrap ul { 
+  margin: 0; 
+  padding: 0;
+  list-style: none;
+}
+
+.news-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 50px 0;
+  gap: 20px;
+}
+
+.news-wrapper li {
+  display: block;
+  width: calc(25% - 20px);
+  border: 2px solid #e1e1e1;
+  padding: 10px;
+  box-sizing: border-box;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.news-wrapper li:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-color: #d1d1d1;
+}
+
+.news-wrapper .image-container {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.news-wrapper .image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.news-wrapper li:hover .image-container img {
+  transform: scale(1.05);
+}
+
+.news-wrapper .date { 
+  margin-bottom: 8px;  
+  display: block;  
+  margin-top: 10px; 
+  color: #888;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.news-wrapper .news_title { 
+  font-size: 16px; 
+  font-weight: 600; 
+  color: #333;
+  text-decoration: none;
+  display: block;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.news-wrapper .news_title:hover {
+  color: #e11b22;
+}
+
+.title {
+  text-align: left;
+  font-size: 30px;
+  margin: 0 0 30px;
+  color: #1e1e1e;
+  width: fit-content;
+  font-weight: 700;
+  position: relative;
+}
+
+.title:after {
+  content: '';
+  display: block;
+  width: 45%;
+  height: 3px;
+  background: #ed3237;
+  margin: 8px 0 0;
+}
+
+@media(max-width: 991px) {
+  .news-wrapper li {
+    width: calc(33.333% - 20px);
+  }
+}
+
+@media(max-width: 767px) { 
+  .news-wrapper li {
+    width: 100%;
+    margin: 0;
+  }
+  .news-wrapper {
+    gap: 20px; 
+  }
+}

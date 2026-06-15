@@ -28,13 +28,13 @@ export default function Footer() {
             <div className="fw-item fw-cats">
               <h4 className="widget-title">Product Categories</h4>
               <ul className="menu">
-                <li><Link href="/product-category/measuring-tapes">Measuring Tapes</Link></li>
-                <li><Link href="/product-category/spirit-levels">Spirit Levels</Link></li>
-                <li><Link href="/product-category/measuring-wheels">Measuring Wheels</Link></li>
-                <li><Link href="/product-category/test-and-measure-tools">Test And Measure Tools</Link></li>
-                <li><Link href="/product-category/precision-tools">Precision Tools</Link></li>
-                <li><Link href="/product-category/hand-tools">Hand Tools</Link></li>
-                <li><Link href="/product-category/power-tool-accessories">Power Tool Accessories</Link></li>
+                <li><Link href="/products/measuring-tapes">Measuring Tapes</Link></li>
+                <li><Link href="/products/spirit-levels">Spirit Levels</Link></li>
+                <li><Link href="/products/measuring-wheels">Measuring Wheels</Link></li>
+                <li><Link href="/products/test-and-measure-tools">Test And Measure Tools</Link></li>
+                <li><Link href="/products/precision-tools">Precision Tools</Link></li>
+                <li><Link href="/products/hand-tools">Hand Tools</Link></li>
+                <li><Link href="/products/power-tool-accessories">Power Tool Accessories</Link></li>
               </ul>
             </div>
 
