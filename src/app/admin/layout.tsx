@@ -9,23 +9,26 @@ export default function AdminLayout({
   return (
     <div className="admin-layout">
       <aside className="admin-sidebar">
-        <h2>Freeman Admin</h2>
+        <h2>Admin Panel</h2>
         <nav>
           <ul>
             <li>
               <Link href="/admin">Dashboard</Link>
             </li>
             <li>
+              <Link href="/admin/menu">Website Menu</Link>
+            </li>
+            <li>
               <Link href="/admin/products">Products</Link>
             </li>
             <li>
-              <Link href="/admin/news">News</Link>
+              <Link href="/admin/news">News & Press</Link>
             </li>
             <li>
               <Link href="/admin/faq">FAQ</Link>
             </li>
-            <li>
-              <Link href="/">← Back to Site</Link>
+            <li style={{ marginTop: 'auto' }}>
+              <Link href="/" className="back-to-site">View Live Site</Link>
             </li>
           </ul>
         </nav>

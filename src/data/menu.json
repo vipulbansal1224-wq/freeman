@@ -1,0 +1,74 @@
+[
+  {
+    "id": "1",
+    "title": "Home",
+    "href": "/"
+  },
+  {
+    "id": "2",
+    "title": "About Us",
+    "href": "/about"
+  },
+  {
+    "id": "3",
+    "title": "Products",
+    "href": "/products",
+    "subItems": [
+      {
+        "id": "3-1",
+        "title": "Measuring Tapes",
+        "href": "/products/measuring-tapes"
+      },
+      {
+        "id": "3-2",
+        "title": "Spirit Levels",
+        "href": "/products/spirit-levels"
+      },
+      {
+        "id": "3-3",
+        "title": "Measuring Wheels",
+        "href": "/products/measuring-wheels"
+      },
+      {
+        "id": "3-4",
+        "title": "Test & Measure Tools",
+        "href": "/products/test-and-measure-tools"
+      },
+      {
+        "id": "3-5",
+        "title": "Precision Tools",
+        "href": "/products/precision-tools"
+      },
+      {
+        "id": "3-6",
+        "title": "Power Tools Accessories",
+        "href": "/products/power-tool-accessories"
+      },
+      {
+        "id": "3-7",
+        "title": "Hand Tools",
+        "href": "/products/hand-tools"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "title": "News",
+    "href": "/news"
+  },
+  {
+    "id": "5",
+    "title": "FAQ",
+    "href": "/faq"
+  },
+  {
+    "id": "6",
+    "title": "Careers",
+    "href": "/careers"
+  },
+  {
+    "id": "7",
+    "title": "Contact Us",
+    "href": "/contact"
+  }
+]

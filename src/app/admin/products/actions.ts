@@ -53,3 +53,36 @@ export async function deleteProduct(categorySlug: string, productIndex: number) 
     revalidatePath(`/products/${categorySlug}`);
   }
 }
+
+export async function editProduct(formData: FormData) {
+  const originalCat = formData.get("originalCat") as string;
+  const originalIndexStr = formData.get("originalIndex") as string;
+  
+  const categorySlug = formData.get("categorySlug") as string;
+  const title = formData.get("title") as string;
+  const imgUrl = formData.get("imgUrl") as string;
+
+  if (!originalCat || !originalIndexStr || !categorySlug || !title || !imgUrl) return;
+
+  const originalIndex = parseInt(originalIndexStr);
+  const data = await getData();
+
+  if (data[originalCat] && data[originalCat].products[originalIndex]) {
+    // If category changed, we need to move it
+    if (originalCat !== categorySlug) {
+      data[originalCat].products.splice(originalIndex, 1);
+      if (!data[categorySlug]) {
+        data[categorySlug] = { title: categorySlug, bannerImage: "", introText: "", sidebarLinks: [], products: [] };
+      }
+      data[categorySlug].products.unshift({ title, img: imgUrl });
+    } else {
+      // Just update it
+      data[originalCat].products[originalIndex] = { title, img: imgUrl };
+    }
+    
+    await fs.writeFile(dataFilePath, JSON.stringify(data, null, 2));
+    revalidatePath("/admin/products");
+    revalidatePath(`/products/${originalCat}`);
+    revalidatePath(`/products/${categorySlug}`);
+  }
+}

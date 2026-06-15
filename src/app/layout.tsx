@@ -2,17 +2,26 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
 import Footer from "./components/Footer";
+import fs from "fs/promises";
+import path from "path";
 
 export const metadata: Metadata = {
   title: "Freeman Group - Clone",
   description: "Measuring Tapes Manufacturer in India",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const menuPath = path.join(process.cwd(), "src/data/menu.json");
+  let menuData: any = [];
+  try {
+    const file = await fs.readFile(menuPath, "utf-8");
+    menuData = JSON.parse(file);
+  } catch(e) {}
+
   return (
     <html lang="en">
       <body>
@@ -56,24 +65,18 @@ export default function RootLayout({
             <div className="container">
               <nav className="main-navigation">
                 <ul>
-                <li><Link href="/">Home</Link></li>
-                <li><Link href="/about">About Us</Link></li>
-                <li className="menu-item-has-children">
-                  <Link href="/products">Products</Link>
-                  <ul className="sub-menu">
-                    <li><Link href="/products/measuring-tapes">Measuring Tapes</Link></li>
-                    <li><Link href="/products/spirit-levels">Spirit Levels</Link></li>
-                    <li><Link href="/products/measuring-wheels">Measuring Wheels</Link></li>
-                    <li><Link href="/products/test-and-measure-tools">Test & Measure Tools</Link></li>
-                    <li><Link href="/products/precision-tools">Precision Tools</Link></li>
-                    <li><Link href="/products/power-tool-accessories">Power Tools Accessories</Link></li>
-                    <li><Link href="/products/hand-tools">Hand Tools</Link></li>
-                  </ul>
-                </li>
-                <li><Link href="/news">News</Link></li>
-                <li><Link href="/faq">FAQ</Link></li>
-                <li><Link href="/careers">Careers</Link></li>
-                <li><Link href="/contact">Contact Us</Link></li>
+                  {menuData.map((item: any) => (
+                    <li key={item.id} className={item.subItems ? "menu-item-has-children" : ""}>
+                      <Link href={item.href}>{item.title}</Link>
+                      {item.subItems && (
+                        <ul className="sub-menu">
+                          {item.subItems.map((sub: any) => (
+                            <li key={sub.id}><Link href={sub.href}>{sub.title}</Link></li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
                 </ul>
               </nav>
             </div>
